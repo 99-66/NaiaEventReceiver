@@ -43,26 +43,26 @@ func NewKafkaClient() (*KafkaClient, error) {
 }
 
 // Create godoc
-// @Summary POST Todo
-// @Description Event Articles Send to Kafka Todo
+// @Summary POST Event To Kafka
+// @Description Event Send to Kafka
 // @Tags Kafka
 // @Accept application/json
 // @Produce application/json
-// @Param Article body models.Article true "Create Article"
+// @Param Event body models.Event true "Create Event"
 // @Success 200 {string} {}
 // @Failure 404 {object} config.APIError
 // @Router /evt/article [post]
 func (k *KafkaClient) POST(c *gin.Context) {
 	// JSON Body를 변환한다(required field check)
-	var article models.Article
-	err := c.BindJSON(&article)
+	var event models.Event
+	err := c.BindJSON(&event)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad Request"})
 		return
 	}
 
 	// Kafka로 전달하기 위해 마샬링한다
-	valJson, err := json.Marshal(article)
+	valJson, err := json.Marshal(event)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed Json UnMarshaling"})
 		return
@@ -70,7 +70,7 @@ func (k *KafkaClient) POST(c *gin.Context) {
 
 	// Kafka로 메시지를 전달한다
 	msg := &sarama.ProducerMessage{
-		Topic: article.Tag,
+		Topic: event.Tag,
 		Value: sarama.ByteEncoder(valJson),
 	}
 	k.Producer.Input() <- msg

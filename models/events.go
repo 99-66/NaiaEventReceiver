@@ -1,6 +1,6 @@
 package models
 
-type Article struct {
+type Event struct {
 	Text string `json:"text" binding:"required"`
 	CreatedAt string `json:"created_at" binding:"required"`
 	Origin string `json:"origin" binding:"required"`
