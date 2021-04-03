@@ -1,0 +1,99 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Article Event Receiver API",
+        "title": "Article Event Receiver API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "paths": {
+        "/evt/article": {
+            "post": {
+                "description": "Event Articles Send to Kafka Todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kafka"
+                ],
+                "summary": "POST Todo",
+                "parameters": [
+                    {
+                        "description": "Create Article",
+                        "name": "Article",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Article"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/config.APIError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "config.APIError": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Article": {
+            "type": "object",
+            "required": [
+                "created_at",
+                "origin",
+                "tag",
+                "text"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

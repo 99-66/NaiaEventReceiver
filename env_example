@@ -1,0 +1,8 @@
+# Production Mode : release
+# debug Mode : debug
+export GIN_MODE=release
+export PORT=8000
+
+# Kafka
+export TOPIC=
+export BROKER=

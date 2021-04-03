@@ -1,0 +1,67 @@
+basePath: /
+definitions:
+  config.APIError:
+    properties:
+      error:
+        type: string
+    type: object
+  models.Article:
+    properties:
+      created_at:
+        type: string
+      origin:
+        type: string
+      tag:
+        type: string
+      text:
+        type: string
+    required:
+    - created_at
+    - origin
+    - tag
+    - text
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Article Event Receiver API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Article Event Receiver API
+  version: "1.0"
+paths:
+  /evt/article:
+    post:
+      consumes:
+      - application/json
+      description: Event Articles Send to Kafka Todo
+      parameters:
+      - description: Create Article
+        in: body
+        name: Article
+        required: true
+        schema:
+          $ref: '#/definitions/models.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/config.APIError'
+      summary: POST Todo
+      tags:
+      - Kafka
+schemes:
+- http
+- https
+swagger: "2.0"
