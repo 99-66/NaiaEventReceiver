@@ -9,7 +9,7 @@ ARG BROKER
 
 # Env Set
 ENV GIN_MODE=release
-ENV PORT=8000
+ENV PORT=8010
 ENV BROKER=${BROKER}
 
 # Timezone Set
