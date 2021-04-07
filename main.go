@@ -5,8 +5,6 @@ import (
 	_ "github.com/99-66/NaiaArticleEventReceiver/docs"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
 	"log"
 	"net/http"
 )
@@ -56,7 +54,7 @@ func initRoutes(kafkaClient *controllers.KafkaClient) *gin.Engine {
 	r.POST("/event/recv", kafkaClient.POST)
 
 	// Swagger Settings
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r
 }
