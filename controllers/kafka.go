@@ -12,7 +12,7 @@ import (
 
 type KafkaClient struct {
 	Producer sarama.AsyncProducer
-	Topic string
+	Topic    string
 }
 
 type KafkaConfig struct {
@@ -42,7 +42,7 @@ func NewKafkaClient() (*KafkaClient, error) {
 	return &kafka, nil
 }
 
-// Create godoc
+// POST Create godoc
 // @Summary POST Event To Kafka
 // @Description Event Send to Kafka
 // @Tags Kafka
