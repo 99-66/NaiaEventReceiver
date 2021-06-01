@@ -5,7 +5,7 @@ definitions:
       error:
         type: string
     type: object
-  models.Article:
+  models.Event:
     properties:
       created_at:
         type: string
@@ -39,14 +39,14 @@ paths:
     post:
       consumes:
       - application/json
-      description: Event Articles Send to Kafka Todo
+      description: Event Send to Kafka
       parameters:
-      - description: Create Article
+      - description: Create Event
         in: body
-        name: Article
+        name: Event
         required: true
         schema:
-          $ref: '#/definitions/models.Article'
+          $ref: '#/definitions/models.Event'
       produces:
       - application/json
       responses:
@@ -58,7 +58,7 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/config.APIError'
-      summary: POST Todo
+      summary: POST Event To Kafka
       tags:
       - Kafka
 schemes:

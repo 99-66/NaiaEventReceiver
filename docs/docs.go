@@ -35,7 +35,7 @@ var doc = `{
     "paths": {
         "/evt/article": {
             "post": {
-                "description": "Event Articles Send to Kafka Todo",
+                "description": "Event Send to Kafka",
                 "consumes": [
                     "application/json"
                 ],
@@ -45,15 +45,15 @@ var doc = `{
                 "tags": [
                     "Kafka"
                 ],
-                "summary": "POST Todo",
+                "summary": "POST Event To Kafka",
                 "parameters": [
                     {
-                        "description": "Create Article",
-                        "name": "Article",
+                        "description": "Create Event",
+                        "name": "Event",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Article"
+                            "$ref": "#/definitions/models.Event"
                         }
                     }
                 ],
@@ -83,7 +83,7 @@ var doc = `{
                 }
             }
         },
-        "models.Article": {
+        "models.Event": {
             "type": "object",
             "required": [
                 "created_at",
